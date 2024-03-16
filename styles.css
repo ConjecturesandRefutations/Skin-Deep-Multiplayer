@@ -1,0 +1,345 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', sans-serif;
+    color: red;
+    background-color: black;
+}
+
+a{
+  color: red;
+}
+   
+.opening-section{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url('images/fingerprint.png'); 
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+
+canvas{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: top left;
+  z-index: 0;
+}
+
+#start-button,#restart-button{
+  cursor: pointer;
+  background-color: black;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%,-50%);
+  font-size: 22px;
+ }
+
+.arrow-button {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  color: darkred;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: bolder;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.up {
+  top: 10px;
+  font-size: 40px;
+}
+
+.down {
+  bottom: 10px;
+  font-size: 40px;
+}
+
+.left {
+  left: 10px;
+  font-size: 40px;
+}
+
+.right {
+  right: 10px;
+  font-size: 40px;
+}
+
+#shoot{
+  left: 200px;
+}
+
+#weapon-img{
+  width: 50px;
+}
+
+.weapon-type{
+  position: absolute !important;
+  right: 100px;
+  transform: translate(-50%);
+  bottom: 0;
+  z-index: 5;
+  font-size: 20px;
+  font-family: 'Courier New', sans-serif;
+  font-weight: bold;
+  bottom: 20px;
+}
+
+.arrow-controls {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);  
+}
+
+.info{
+  position: absolute;
+  bottom: 20px;
+  left: 100px;
+  z-index: 5;
+  font-size: 20px;
+  font-family: 'Courier New', sans-serif;
+  font-weight: bold;
+}
+
+#title,#died{
+  background-color: black;
+  white-space: nowrap;
+  font-size: 40px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+}
+
+#subtitle{
+  background-color: black;
+  white-space: nowrap;
+  font-size: 25px;
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%,-50%);
+}
+
+.instruction-wrapper{
+  cursor: pointer;
+  position: absolute;
+  padding: none;
+  display: flex;
+  flex-direction: row;
+  top: 21px;
+  right: 100px;
+  padding: none;
+}
+
+.instruction-text,.credit-text{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.play-music{
+  cursor: pointer;
+  position: absolute;
+  padding: none;
+  display: flex;
+  flex-direction: row;
+  top: 21px;
+  left: 100px;
+}
+
+.credits{
+  cursor: pointer;
+  position: absolute;
+  padding-left: 2px;
+  padding-right: 2px;
+  display: flex;
+  flex-direction: row;
+  bottom: 21px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: black;
+  font-size: medium;
+}
+
+
+#mute-icon{
+  position: absolute;
+  font-size: 30px;
+  left: 100px;
+  transform: translate(-50%);
+  margin-top: 21px;
+  cursor: pointer;
+  z-index: 1000;
+  background-color: black;
+}
+
+#home-icon{
+  position: absolute;
+  font-size: 30px;
+  right: 100px;
+  transform: translate(-50%);
+  margin-top: 21px;
+  cursor: pointer;
+  z-index: 1000;
+  background-color: black;
+}
+
+#volume-icon,#instruction-icon{
+  margin-top: 21px;
+  background-color: black;
+}
+
+.back{
+  position: absolute;
+  top: 21px;
+  right: 100px;
+  background-color: black;
+  color: red;
+  font-family: 'Courier New', sans-serif;
+  font-size: large;
+  cursor: pointer;
+}
+
+#final-score{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 22px;
+}
+
+.game-over{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url('images/fingerprint.png'); 
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+
+#final-score{
+  background-color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+.medikit{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#medikit{
+  width: 70px;
+  height: 50px;
+}
+
+.pill{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#pill{
+  width: 70px;
+  height: 30px;
+  top: 50%;
+}
+
+.shotgun{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#shotgun{
+  width: 70px;
+  height: 50px;
+}
+
+.medikit,
+.pill,
+.shotgun {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+#medikit,
+#pill,
+#shotgun {
+  width: 70px;
+  height: auto; /* Maintain aspect ratio */
+}
+
+@media(min-width:1111px){
+  .arrow-controls{
+    display: none;
+  }
+}
+
+@media(max-width:1111px){
+  .weapon-type{
+    display: none;
+  }
+}
+
+@media(max-width:600px){
+  .play-music,.info,#mute-icon{
+      left: 50px;
+  }
+  .instruction-wrapper,#home-icon{
+    right: 50px;
+  }
+}
+
+@media(max-width:500px){
+  #opening-music,#instructions{
+    display: none;
+  }
+  #volume-icon,#instruction-icon{
+    font-size: 40px;
+  }
+  .instruction-text,.credit-text{
+    top: 7%;
+    width: 80%;
+  }
+  #shotty{
+    max-width: 80%;
+  }
+  .back{
+    right: 50px;
+  }
+}
+
+@media(max-width:450px){
+  .info{
+      bottom: 30%;
+      font-size: 18px;
+  }
+}

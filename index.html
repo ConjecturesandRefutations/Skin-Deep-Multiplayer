@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Deep</title>
+    <link rel="shortcut icon" href="./images/fingerprint.png" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <section class="opening-section">
+
+            <article class="instruction-wrapper">
+                <h3 id="instructions">Instructions</h3>&ensp;<i class="fas fa-info-circle" aria-hidden="true" id="instruction-icon"></i>
+            </article>
+
+            <h1 id="title">Skin Deep</h1>
+            <h2 id="subtitle">Multiplayer</h2>
+            
+            <article class="play-music">
+                <h3 id="opening-music">Opening Music</h3>&ensp;<i class="fas fa-volume-mute" aria-hidden="true" id="volume-icon"></i>
+            </article>
+
+            <h3 id="start-button">Start Game</h3>
+
+            
+                <h3 class="credits" id="credits">Credits</h3>
+            
+
+
+    </section>
+
+    <section class="instruction-section">
+        <div class="instruction-text">
+            <h3 style="text-align: center;">Instructions</h3>
+            <p>The object of the game is to shoot the knived enemies.</p>
+            <p>For each attacker you kill, your score increases by 1.</p>
+            <p>When a knived enemy gets close enough, he will attack. If you are sufficiently close whilst he attacks, you will lose health.</p>
+            <p>When your health drops to 0, the game is over.</p>
+            <p>Enemies get increasingly dense and move increasingly quickly over time.</p>
+            <h3>Desktop/Laptop Controls</h3>
+            <p>Use your keyboard's arrow keys to move the player. Use the spacebar to shoot bullets.</p>
+            <h3>Mobile/Tablet Controls</h3>
+            <p>Use the on-screen arrows to move the player. Press the gun icon to shoot bullets.</p>
+            <h3>Special Items</h3>
+            <div class="medikit">
+                <img src="images/medikit.png" alt="medikit" id="medikit">
+                <p>The <span style="font-weight: bold; font-size: 1.1em;">Medikit</span> adds 20 health. This lifesaver appears very frequently.</p>
+            </div>
+            <div class="pill">
+                <img src="images/pill.png" alt="pill" id="pill">
+                <p>The <span style="font-weight: bold; font-size: 1.1em;">Remedy Pill</span> slows down and thins the enemy crowd. This appears each time your score reaches a multiple of 50. Not to be underestimated.</p>
+            </div>
+            <div class="shotgun">
+                <img src="images/shotgun.png" alt="shotgun" id="shotgun">
+                <p>The <span style="font-weight: bold; font-size: 1.1em;">Shotgun</span> is simply better than the default pistol. It shoots three streams of pellets and is unlocked after your score reaches 100.</p>
+            </div>
+        </div>
+        <button class="back">Back</button>
+    </section>
+
+    <section class="credits-section">
+        <div class="credit-text">
+            <h3 style="text-align: center;">Credits</h3>
+            <p>The player sprites used in this game were created by Riley Gombart. This pack is licensed under CC-BY 3.0. They can be found at: <a href= "https://unluckystudio.com/free-top-down-shooterplayer-sprites/">https://unluckystudio.com/free-top-down-shooterplayer-sprites/</a></p>
+            <p>The fingerprint image used as the opening background and favicon can be found at: <a href= https://www.cleanpng.com/png-fingerprint-scanner-transparency-image-scanner-fin-7322716/download-png.html1">https://www.cleanpng.com/png-fingerprint-scanner-transparency-image-scanner-fin-7322716/download-png.html1</a></p>
+            <p>The opening music is by Gioele Fazzeri, from: <a href="https://pixabay.com/music/horror-scene-donx27t-look-down-the-basement-true-crime-thriller-loopable-music-132133/">Pixabay</a></p>
+            <p>The bullet image comes from: <a href="https://www.freepnglogos.com/images/bullet-8468.html">freepnglogos</a></p>
+            <p>The pistol image comes from: <a href="https://toppng.com/img-download/stock/135785">https://toppng.com/img-download/stock/135785</a></p>
+            <p id="shotty">The shotgun image comes from: <a href="https://creazilla.com/nodes/3155824-shotgun-clipart">https://creazilla.com/</a></p>
+         </div>
+        <button class="back">Back</button>
+    </section>
+
+    <canvas id="canvas"></canvas>
+    
+    <i class="fas fa-volume-up" aria-hidden="true" id="mute-icon"></i>
+    <i class="fas fa-home" id="home-icon"></i>
+
+    <section class="arrow-controls">
+        <button class="arrow-button up" id="up-button">↑</button>
+        <button class="arrow-button down" id="down-button">↓</button>
+        <button class="arrow-button left" id="left-button">←</button>
+        <button class="arrow-button right" id="right-button">→</button>
+        <button class="arrow-button" id="shoot"><img src="./images/pistol.png" alt="bullet" id="weapon-img"></button>
+    </section>
+
+    <p class="weapon-type"></p>
+
+    <section class="info">
+
+        <p class="one">Health: <span id="health-value">100</span><span id="health-indicator" class="health-indicator hidden" style="color: green;"> +20</span><span id="ten-indicator" class="ten-indicator hidden" style="color: green;"> +10</span></div><br/></p>
+        <p class="two">Kill Count: <span id="score-value">0</span> </p>
+
+    </section>
+
+    <section class="game-over">
+        <h1 id="died">You died</h1>
+        <h3 id="final-score">Score <span id="finalScore"></span></h3>
+        <h3 id="restart-button">Restart?</h3>
+    </section>
+ 
+    <script src="js/audio.js"></script>
+    <script src="js/sections.js"></script>
+</body>
+</html>

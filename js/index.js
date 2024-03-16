@@ -529,12 +529,15 @@ function getRandomPosition(width, height) {
 function resetScore(){
   gameOver = true;
   currentGame.health = 100;
+  currentGame.healthTwo = 100;
   currentGame.score = 0;
+  currentGame.scoreTwo = 0;
   currentPlayer.hasPistol = true;
   currentPlayerTwo.hasPistol = true;
   scoreValue.innerText = currentGame.score;
+  scoreValueTwo.innerText = currentGame.scoreTwo;
   healthValue.innerText = currentGame.health;
-  healthValueTwo.innerText = currentGame.health;
+  healthValueTwo.innerText = currentGame.healthTwo;
   enemySpeed = 1.5;
   divisor = 60;  
 }

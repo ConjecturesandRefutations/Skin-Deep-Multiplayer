@@ -20,16 +20,39 @@ class Enemy {
         this.currentBloodFrame++;
       } else {
         const enemyImg = new Image();
-  
+    
         // Calculate the distance between each player and the enemy
         const distanceToPlayer1 = Math.sqrt(Math.pow(currentPlayer.x - this.x, 2) + Math.pow(currentPlayer.y - this.y, 2));
         const distanceToPlayer2 = Math.sqrt(Math.pow(currentPlayerTwo.x - this.x, 2) + Math.pow(currentPlayerTwo.y - this.y, 2));
-  
+    
+        // Determine which player is closer
+        let targetPlayer;
+        if (distanceToPlayer1 < distanceToPlayer2) {
+          targetPlayer = currentPlayer;
+        } else {
+          targetPlayer = currentPlayerTwo;
+        }
+    
+        // Calculate the angle to move towards the target player
+        const angle = Math.atan2(targetPlayer.y - this.y, targetPlayer.x - this.x);
+    
+        // Move towards the target player
+        const speed = 1; // Adjust this value to control the speed of movement
+        this.x += Math.cos(angle) * speed;
+        this.y += Math.sin(angle) * speed;
+    
         // Determine if the enemy should attack player 1
         let attackPlayer1 = distanceToPlayer1 <= 75;
         // Determine if the enemy should attack player 2
         let attackPlayer2 = distanceToPlayer2 <= 75;
-  
+    
+        // Check which player is closer
+        if (distanceToPlayer1 < distanceToPlayer2) {
+          attackPlayer2 = false; // Don't attack player 2 if player 1 is closer
+        } else {
+          attackPlayer1 = false; // Don't attack player 1 if player 2 is closer
+        }
+    
         if (attackPlayer1 || attackPlayer2) {
           const attacking = Math.floor(Date.now() / 300) % 2 === 0;
           if (attacking) {
@@ -37,7 +60,7 @@ class Enemy {
             if (!audioMuted) {
               slash.play();
             }
-  
+    
             if (!this.wasAttacking && ((attackPlayer1 && distanceToPlayer1 <= 65) || (attackPlayer2 && distanceToPlayer2 <= 65))) {
               if (attackPlayer1 && currentGame.health > 0) {
                 currentGame.health -= 10;
@@ -59,7 +82,7 @@ class Enemy {
                 wound.play();
               }
             }
-  
+    
             this.wasAttacking = true;
           } else {
             enemyImg.src = this.img;
@@ -69,20 +92,20 @@ class Enemy {
           enemyImg.src = this.img;
           this.wasAttacking = false;
         }
-  
+    
         if (!attackPlayer1 && !attackPlayer2) {
           this.wasAttacking = false;
         }
-  
-        const angle = Math.atan2(currentPlayer.y - this.y, currentPlayer.x - this.x);
-  
+    
+        // Draw the enemy
+        const drawAngle = angle + Math.PI / 2; // Adjust the angle for proper rotation
         ctx.save();
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
-        ctx.rotate(angle);
+        ctx.rotate(drawAngle);
         ctx.drawImage(enemyImg, -this.width / 2, -this.height / 2, this.width, this.height);
         ctx.restore();
       }
-    }
+    }    
   
     collidesWith(x, y) {
       return (

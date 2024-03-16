@@ -1,15 +1,12 @@
 //Opening Section
 const openingSection = document.querySelector('.opening-section');
 
-//Arrow Controls
-const arrowControls = document.querySelector('.arrow-controls');
-arrowControls.style.display = 'none';
-
 //Info Section
 const info = document.querySelector('.info');
 info.style.display = 'none';
 const scoreValue = document.getElementById('score-value');
 const healthValue = document.getElementById('health-value');
+const healthValueTwo = document.getElementById('health-value-two');
 
 const finalScore = document.getElementById('finalScore');
 
@@ -61,7 +58,6 @@ homeButton.style.display = 'none';
   weaponType.style.display = 'none';
   openingAudioPlaying = false;
   opening.currentTime = 0;
-  arrowControls.style.display = 'none';
   info.style.display = 'none';
   GameOver.style.display = 'none';
   volumeIcon.classList.remove('fa', 'fa-volume-up');
@@ -81,7 +77,6 @@ window.onload = () => {
   startButton.onclick = () => { 
     canvas.style.display = '';
     openingSection.style.display = 'none';
-    arrowControls.style.display = '';
     info.style.display = '';
     homeButton.style.display = '';
     muteButton.style.display = '';
@@ -103,7 +98,6 @@ const restartButton = document.getElementById('restart-button');
   GameOver.style.display = 'none';
   canvas.style.display = '';
   info.style.display = '';
-  arrowControls.style.display = '';
   muteButton.style.display = '';
   weaponType.style.display = '';
   startGame();

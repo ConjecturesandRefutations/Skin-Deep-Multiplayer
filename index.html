@@ -79,13 +79,6 @@
     <i class="fas fa-volume-up" aria-hidden="true" id="mute-icon"></i>
     <i class="fas fa-home" id="home-icon"></i>
 
-    <section class="arrow-controls">
-        <button class="arrow-button up" id="up-button">↑</button>
-        <button class="arrow-button down" id="down-button">↓</button>
-        <button class="arrow-button left" id="left-button">←</button>
-        <button class="arrow-button right" id="right-button">→</button>
-        <button class="arrow-button" id="shoot"><img src="./images/pistol.png" alt="bullet" id="weapon-img"></button>
-    </section>
 
     <p class="weapon-type"></p>
 
@@ -93,6 +86,9 @@
 
         <p class="one">Health: <span id="health-value">100</span><span id="health-indicator" class="health-indicator hidden" style="color: green;"> +20</span><span id="ten-indicator" class="ten-indicator hidden" style="color: green;"> +10</span></div><br/></p>
         <p class="two">Kill Count: <span id="score-value">0</span> </p>
+
+        <p class="three">Health: <span id="health-value-two">100</span><span id="health-indicator" class="health-indicator hidden" style="color: green;"> +20</span><span id="ten-indicator" class="ten-indicator hidden" style="color: green;"> +10</span></div><br/></p>
+        <p class="four">Kill Count: <span id="score-value-two">0</span> </p>
 
     </section>
 
@@ -102,7 +98,17 @@
         <h3 id="restart-button">Restart?</h3>
     </section>
  
+    <script src="js/index.js"></script>
     <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/P1controls.js"></script>
+    <script src="js/P2controls.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/enemy.js"></script>
     <script src="js/sections.js"></script>
+    <script src="js/medikit.js"></script>
+    <script src="js/pill.js"></script>
+    <script src="js/shotgun.js"></script>
 </body>
 </html>

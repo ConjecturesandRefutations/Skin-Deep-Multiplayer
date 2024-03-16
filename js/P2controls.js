@@ -1,7 +1,7 @@
 class PlayerTwo {
     constructor() {
-      this.x = canvas.width / 2;
-      this.y = canvas.height / 2;
+      this.x = canvas.width / 3;
+      this.y = canvas.height / 3;
       this.width = 50;
       this.height = 50;
       this.angle = 0;
@@ -26,7 +26,7 @@ class PlayerTwo {
       this.throttledRightStart = this.throttle(() => this.startMovingPlayerTwo('right'), this.throttleDelay);
     }
   
-    drawPlayerTwo() {
+    drawPlayer() {
       const playertwoImg = new Image();
       if (this.isWounded && this.hasShotgun) {
         playertwoImg.src = './images/player-shotgun-wounded.png'; // Wounded with shotgun
@@ -103,6 +103,10 @@ class PlayerTwo {
         this.rightButtonDown = false;
         this.stopMovingPlayerTwo();
       }
+     else if (event.key === 'x') {
+      // x key
+      this.bulletFired = false;
+    }
     }
   
     throttle(callback, delay) {
@@ -190,6 +194,7 @@ class PlayerTwo {
           gunshot.play();
         }
       }
+
     }
   
     shootShotgun() {
@@ -216,6 +221,7 @@ class PlayerTwo {
           shotgun.play();
         }
       }
+
     }
   
     acquireShotgun() {

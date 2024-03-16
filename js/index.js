@@ -87,10 +87,8 @@ for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
                   currentPlayerTwo.isHit = false;
                 }, 300);
           // Decrease healthTwo by 10
-          if (currentGame.healthTwo > 0) {
             currentGame.healthTwo -= 10;
             healthValueTwo.innerText = currentGame.healthTwo;
-          }
           
           healthValueTwo.innerText = currentGame.healthTwo;  
         
@@ -139,10 +137,8 @@ for (let i = currentGame.bulletsTwo.length - 1; i >= 0; i--) {
                   currentPlayer.isHit = false;
                 }, 300);
             // Decrease healthTwo by 10
-            if (currentGame.health > 0) {
               currentGame.health -= 10;
               healthValue.innerText = currentGame.health;
-            }
           
             // Remove the bullet from the array
             currentGame.bulletsTwo.splice(i, 1);
@@ -428,10 +424,10 @@ if (currentGame.score % 50 !== 0) {
   pillSpawned = false;
 }
 
-//Logic for spawning player 1 shotgun
-if (currentGame.score === 100 && !shotgunSpawned) {
+// Logic for spawning player 1 shotgun
+if (currentGame.score === 100 && !shotgunSpawnedPlayer1) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
-  const shotgunWidth = 100; 
+  const shotgunWidth = 100;
   const shotgunHeight = 50;
   const randomShotgunPosition = getRandomPosition(shotgunWidth, shotgunHeight);
 
@@ -444,17 +440,17 @@ if (currentGame.score === 100 && !shotgunSpawned) {
 
   currentGame.shotguns.push(newShotgun);
 
-  // Set the flag to true to indicate that a shotgun has been spawned
-  shotgunSpawned = true;
+  // Set the flag to true to indicate that a shotgun has been spawned for player 1
+  shotgunSpawnedPlayer1 = true;
 }
 
-// Check for collisions with shotguns
+// Check for collisions with shotguns for player 1
 for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
   const shotgun = currentGame.shotguns[i];
 
   if (shotgun.collidesWith(currentPlayer.x, currentPlayer.y, currentPlayer.width, currentPlayer.height)) {
     currentGame.shotguns.splice(i, 1);
-    if(!audioMuted){
+    if (!audioMuted) {
       reload.play();
     }
     currentPlayer.hasPistol = false;
@@ -466,17 +462,13 @@ for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
 }
 
 if (currentGame.score !== 100) {
-  shotgunSpawned = false;
+  shotgunSpawnedPlayer1 = false;
 }
 
-
-
-
-
-//Logic for spawning player 2 shotgun
-if (currentGame.scoreTwo === 100 && !shotgunSpawned) {
+// Logic for spawning player 2 shotgun
+if (currentGame.scoreTwo === 100 && !shotgunSpawnedPlayer2) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
-  const shotgunWidth = 100; 
+  const shotgunWidth = 100;
   const shotgunHeight = 50;
   const randomShotgunPosition = getRandomPosition(shotgunWidth, shotgunHeight);
 
@@ -489,17 +481,17 @@ if (currentGame.scoreTwo === 100 && !shotgunSpawned) {
 
   currentGame.shotguns.push(newShotgun);
 
-  // Set the flag to true to indicate that a shotgun has been spawned
-  shotgunSpawned = true;
+  // Set the flag to true to indicate that a shotgun has been spawned for player 2
+  shotgunSpawnedPlayer2 = true;
 }
 
-// Check for collisions with shotguns
+// Check for collisions with shotguns for player 2
 for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
   const shotgun = currentGame.shotguns[i];
 
   if (shotgun.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
     currentGame.shotguns.splice(i, 1);
-    if(!audioMuted){
+    if (!audioMuted) {
       reload.play();
     }
     currentPlayerTwo.hasPistol = false;
@@ -510,11 +502,9 @@ for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
   }
 }
 
-if (currentGame.score !== 100) {
-  shotgunSpawned = false;
+if (currentGame.scoreTwo !== 100) {
+  shotgunSpawnedPlayer2 = false;
 }
-
-
 
 //Logic for ending the game
 if((currentGame.health<=0) || (currentGame.healthTwo<=0)){

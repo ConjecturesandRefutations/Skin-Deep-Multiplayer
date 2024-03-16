@@ -87,7 +87,11 @@ for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
                   currentPlayerTwo.isHit = false;
                 }, 300);
           // Decrease healthTwo by 10
-          currentGame.healthTwo -= 10;
+          if (currentGame.healthTwo > 0) {
+            currentGame.healthTwo -= 10;
+            healthValueTwo.innerText = currentGame.healthTwo;
+          }
+          
           healthValueTwo.innerText = currentGame.healthTwo;  
         
           // Remove the bullet from the array
@@ -135,8 +139,10 @@ for (let i = currentGame.bulletsTwo.length - 1; i >= 0; i--) {
                   currentPlayer.isHit = false;
                 }, 300);
             // Decrease healthTwo by 10
-            currentGame.health -= 10;
-            healthValue.innerText = currentGame.health;  
+            if (currentGame.health > 0) {
+              currentGame.health -= 10;
+              healthValue.innerText = currentGame.health;
+            }
           
             // Remove the bullet from the array
             currentGame.bulletsTwo.splice(i, 1);
@@ -290,6 +296,7 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
     if (!audioMuted) {
       medical.play();
     }
+
     if (currentGame.health <= 80) {
       currentGame.health += 20;
       healthValue.innerText = currentGame.health;
@@ -307,7 +314,7 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
       setTimeout(() => {
             tenIndicator.classList.add('hidden');
         }, 1000); 
-    }
+    } else 
     // Remove the medikit from the array
     currentGame.medikits.splice(i, 1);
 
@@ -510,7 +517,7 @@ if (currentGame.score !== 100) {
 
 
 //Logic for ending the game
-if((currentGame.health===0) || (currentGame.healthTwo===0)){
+if((currentGame.health<=0) || (currentGame.healthTwo<=0)){
   endGame();
   gameOver = true;
   if (currentGame.health===0){

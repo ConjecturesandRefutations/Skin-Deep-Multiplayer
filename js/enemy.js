@@ -71,8 +71,8 @@ class Enemy {
                 }, 500);
               }
               if (attackPlayer2 && currentGame.healthTwo > 0) {
-/*                 currentGame.healthTwo -= 5; 
- */                healthValueTwo.innerText = currentGame.healthTwo;
+                 currentGame.healthTwo -= 5; 
+                 healthValueTwo.innerText = currentGame.healthTwo;
                 currentPlayerTwo.isWounded = true;
                 setTimeout(() => {
                   currentPlayerTwo.isWounded = false;

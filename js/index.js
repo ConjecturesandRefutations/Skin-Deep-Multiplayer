@@ -19,8 +19,6 @@ const medikitSpawnInterval = 20 * divisor;
 
 let accelerator = 20;
 
-const weaponImg = document.getElementById('weapon-img');
-
 /* let background = new Image();
 background.src = "./images/field.jpg"; */
 
@@ -51,12 +49,6 @@ function updateCanvas() {
 
   if(gameOver){
     return;
-  }
-
-  if (currentPlayer.hasPistol) {
-    document.querySelector('.weapon-type').innerText = 'Pistol';
-  } else {
-    document.querySelector('.weapon-type').innerText = 'Shotgun';
   }
 
   const currentTime = Date.now();
@@ -199,7 +191,7 @@ overallMedikitTimer++;
 const isMedikitInGame = currentGame.medikits.length > 0;
 
 // Check if enough time has passed for a new medikit to be spawned
-if (!isMedikitInGame && overallMedikitTimer >= medikitSpawnInterval && currentGame.health < 100) {
+if (!isMedikitInGame && overallMedikitTimer >= medikitSpawnInterval && (currentGame.health < 100 || currentGame.healthTwo < 100)) {
 
   const medikitSize = 30;
   const randomMedikitPosition = getRandomPosition(medikitSize, medikitSize);
@@ -223,7 +215,7 @@ if (!isMedikitInGame && overallMedikitTimer >= medikitSpawnInterval && currentGa
   overallMedikitTimer++;
 }
 
-// Check for collisions with medikits
+// Check for player 1 collisions with medikits
 for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
   const medikit = currentGame.medikits[i];
 
@@ -260,6 +252,45 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
     medikit.drawMedikit();
   }
 }
+
+
+// Check for player 2 collisions with medikits
+for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
+    const medikit = currentGame.medikits[i];
+  
+    if (medikit.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayeTwor.width, currentPlayerTwo.height)) {
+      // Player collided with medikit
+      if (!audioMuted) {
+        medical.play();
+      }
+      if (currentGame.healthTwo <= 80) {
+        currentGame.healthTwo += 20;
+        healthValueTwo.innerText = currentGame.health;
+        // Display the bonus indicator and then hide it after a delay
+        const healthIndicator = document.getElementById('health-indicator');
+        healthIndicator.classList.remove('hidden');
+        setTimeout(() => {
+              healthIndicator.classList.add('hidden');
+          }, 1000); 
+      } else if (currentGame.health === 90) {
+        currentGame.health += 10;
+        healthValue.innerText = currentGame.health;
+        const tenIndicator = document.getElementById('ten-indicator');
+        tenIndicator.classList.remove('hidden');
+        setTimeout(() => {
+              tenIndicator.classList.add('hidden');
+          }, 1000); 
+      }
+      // Remove the medikit from the array
+      currentGame.medikits.splice(i, 1);
+  
+      // Reset overall medikit timer when a medikit is collected
+      overallMedikitTimer = 0;
+    } else {
+      // Draw and update medikit
+      medikit.drawMedikit();
+    }
+  }
 
 // Check if the player's score is a multiple of 50 and spawn a pill
 if (currentGame.score % 50 === 0 && currentGame.score !== 0 && !pillSpawned) {
@@ -370,6 +401,8 @@ function resetScore(){
   currentPlayerTwo.hasPistol = true;
   scoreValue.innerText = currentGame.score;
   healthValue.innerText = currentGame.health;
+  healthValueTwo.innerText = currentGame.health;
+  healthV
   enemySpeed = 1.5;
   divisor = 60;  
 }
@@ -377,8 +410,6 @@ function resetScore(){
 function endGame(){
   info.style.display = 'none';
   canvas.style.display = 'none';
-  arrowControls.style.display = 'none';
   GameOver.style.display = '';
   muteButton.style.display = 'none';
-  weaponType.style.display = 'none'
  }

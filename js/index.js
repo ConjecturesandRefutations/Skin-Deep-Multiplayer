@@ -425,7 +425,7 @@ if (currentGame.score % 50 !== 0) {
 }
 
 // Logic for spawning player 1 shotgun
-if (currentGame.score === 100 && !shotgunSpawnedPlayer1) {
+if (currentGame.score === 50 && !shotgunSpawnedPlayer1) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
   const shotgunWidth = 100;
   const shotgunHeight = 50;
@@ -461,12 +461,12 @@ for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
   }
 }
 
-if (currentGame.score !== 100) {
+if (currentGame.score !== 50) {
   shotgunSpawnedPlayer1 = false;
 }
 
 // Logic for spawning player 2 shotgun
-if (currentGame.scoreTwo === 100 && !shotgunSpawnedPlayer2) {
+if (currentGame.scoreTwo === 50 && !shotgunSpawnedPlayer2) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
   const shotgunTwoWidth = 100;
   const shotgunTwoHeight = 50;
@@ -502,7 +502,7 @@ for (let i = currentGame.shotgunsTwo.length - 1; i >= 0; i--) {
   }
 }
 
-if (currentGame.scoreTwo !== 100) {
+if (currentGame.scoreTwo !== 50) {
   shotgunSpawnedPlayer2 = false;
 }
 

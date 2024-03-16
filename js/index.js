@@ -81,7 +81,7 @@ for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
 
         // Check for collisions with currentPlayerTwo
         if (currentPlayerTwo.collidesWith(bullet.x, bullet.y, bullet.width, bullet.height)) {
-          shot.play();
+          if(!audioMuted){shot.play()};
           currentPlayerTwo.isHit = true;
                 setTimeout(() => {
                   currentPlayerTwo.isHit = false;
@@ -131,7 +131,7 @@ for (let i = currentGame.bulletsTwo.length - 1; i >= 0; i--) {
 
            // Check for collisions with currentPlayer
            if (currentPlayer.collidesWith(bulletTwo.x, bulletTwo.y, bulletTwo.width, bulletTwo.height)) {
-            shot.play();
+            if(!audioMuted){shot.play()};
             currentPlayer.isHit = true;
                 setTimeout(() => {
                   currentPlayer.isHit = false;

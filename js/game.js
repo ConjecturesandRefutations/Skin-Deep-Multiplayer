@@ -12,5 +12,6 @@ class Game {
         this.medikits = [];
         this.pills = [];
         this.shotguns = [];
+        this.shotgunsTwo = [];
     }
 }

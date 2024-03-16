@@ -468,29 +468,29 @@ if (currentGame.score !== 100) {
 // Logic for spawning player 2 shotgun
 if (currentGame.scoreTwo === 100 && !shotgunSpawnedPlayer2) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
-  const shotgunWidth = 100;
-  const shotgunHeight = 50;
-  const randomShotgunPosition = getRandomPosition(shotgunWidth, shotgunHeight);
+  const shotgunTwoWidth = 100;
+  const shotgunTwoHeight = 50;
+  const randomShotgunTwoPosition = getRandomPosition(shotgunTwoWidth, shotgunTwoHeight);
 
-  const newShotgun = new Shotgun(
-    randomShotgunPosition.x,
-    randomShotgunPosition.y,
-    shotgunWidth,
-    shotgunHeight
+  const newShotgunTwo = new ShotgunTwo(
+    randomShotgunTwoPosition.x,
+    randomShotgunTwoPosition.y,
+    shotgunTwoWidth,
+    shotgunTwoHeight
   );
 
-  currentGame.shotguns.push(newShotgun);
+  currentGame.shotgunsTwo.push(newShotgunTwo);
 
   // Set the flag to true to indicate that a shotgun has been spawned for player 2
   shotgunSpawnedPlayer2 = true;
 }
 
 // Check for collisions with shotguns for player 2
-for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
-  const shotgun = currentGame.shotguns[i];
+for (let i = currentGame.shotgunsTwo.length - 1; i >= 0; i--) {
+  const shotgunTwo = currentGame.shotgunsTwo[i];
 
-  if (shotgun.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
-    currentGame.shotguns.splice(i, 1);
+  if (shotgunTwo.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
+    currentGame.shotgunsTwo.splice(i, 1);
     if (!audioMuted) {
       reload.play();
     }
@@ -498,7 +498,7 @@ for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
     currentPlayerTwo.hasShotgun = true;
   } else {
     // Draw and update the shotgun
-    shotgun.drawShotgun();
+    shotgunTwo.drawShotgun();
   }
 }
 

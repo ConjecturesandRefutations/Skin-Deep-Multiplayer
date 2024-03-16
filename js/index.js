@@ -82,6 +82,10 @@ for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
         // Check for collisions with currentPlayerTwo
         if (currentPlayerTwo.collidesWith(bullet.x, bullet.y, bullet.width, bullet.height)) {
           shot.play();
+          currentPlayerTwo.isHit = true;
+                setTimeout(() => {
+                  currentPlayerTwo.isHit = false;
+                }, 300);
           // Decrease healthTwo by 10
           currentGame.healthTwo -= 10;
           healthValueTwo.innerText = currentGame.healthTwo;  
@@ -123,9 +127,13 @@ for (let i = currentGame.bulletsTwo.length - 1; i >= 0; i--) {
     bulletTwo.update();
     bulletTwo.draw();
 
-           // Check for collisions with currentPlayerTwo
+           // Check for collisions with currentPlayer
            if (currentPlayer.collidesWith(bulletTwo.x, bulletTwo.y, bulletTwo.width, bulletTwo.height)) {
             shot.play();
+            currentPlayer.isHit = true;
+                setTimeout(() => {
+                  currentPlayer.isHit = false;
+                }, 300);
             // Decrease healthTwo by 10
             currentGame.health -= 10;
             healthValue.innerText = currentGame.health;  
@@ -199,7 +207,7 @@ if (enemyFrequency % divisor === 1) {
   
     currentGame.enemies.push(newEnemy);
   }
-
+ 
   for (let i = 0; i < currentGame.enemies.length; i++) {
     const enemy = currentGame.enemies[i];
   
@@ -323,7 +331,7 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
       }
       if (currentGame.healthTwo <= 80) {
         currentGame.healthTwo += 20;
-        healthValueTwo.innerText = currentGame.health;
+        healthValueTwo.innerText = currentGame.healthTwo;
         // Display the bonus indicator and then hide it after a delay
         const healthIndicatorTwo = document.getElementById('health-indicator-two');
         healthIndicatorTwo.classList.remove('hidden');

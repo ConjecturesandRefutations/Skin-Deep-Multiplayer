@@ -12,6 +12,7 @@ class PlayerTwo {
       this.rightButtonDown = false;
       this.throttleDelay = 100; // Keyboard Throttle Delay (Milliseconds)
       this.isWounded = false;
+      this.isHit = false;
       this.hasPistol = true;
       this.hasShotgun = false;
   
@@ -34,6 +35,8 @@ class PlayerTwo {
         playertwoImg.src = './images/player-wounded.png'; // Wounded without shotgun
       } else if (!this.isWounded && this.hasShotgun) {
         playertwoImg.src = './images/player2-shotgun.png'; // Not wounded with shotgun
+      } else if(this.isHit){
+        playertwoImg.src = './images/blood.png' // Hit by bullet
       } else {
         playertwoImg.src = './images/player2.png'; // Not wounded without shotgun (default)
       }

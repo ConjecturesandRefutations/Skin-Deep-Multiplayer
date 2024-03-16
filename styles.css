@@ -177,6 +177,17 @@ canvas{
   left: 100px;
 }
 
+.single-player{
+  position: absolute;
+  bottom: 35px;
+  left: 100px;
+  text-decoration: none;
+}
+
+#single-player{
+  display: none;
+}
+
 .credits{
   cursor: pointer;
   position: absolute;
@@ -319,8 +330,21 @@ canvas{
   }
 }
 
+@media(max-width:800px){
+.single-player{
+  display: none;
+}
+#single-player{
+  display: block;
+  position: absolute;
+  padding: none;
+  bottom: 40px;
+  left: 100px;
+}
+}
+
 @media(max-width:600px){
-  .play-music,.info,#mute-icon{
+  .play-music,.info,#mute-icon,#single-player{
       left: 50px;
   }
   .instruction-wrapper,#home-icon{
@@ -332,7 +356,7 @@ canvas{
   #opening-music,#instructions{
     display: none;
   }
-  #volume-icon,#instruction-icon{
+  #volume-icon,#instruction-icon,#single-player{
     font-size: 40px;
   }
   .instruction-text,.credit-text{

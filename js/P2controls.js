@@ -1,7 +1,7 @@
 class PlayerTwo {
     constructor() {
-      this.x = canvas.width / 3;
-      this.y = canvas.height / 3;
+      this.x = canvas.width / 2 +  50;
+      this.y = canvas.height / 2 + 50;
       this.width = 50;
       this.height = 50;
       this.angle = 0;

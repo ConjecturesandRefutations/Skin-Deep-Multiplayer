@@ -6,9 +6,14 @@ const info = document.querySelector('.info');
 info.style.display = 'none';
 const scoreValue = document.getElementById('score-value');
 const healthValue = document.getElementById('health-value');
+
+//Info-Two Section
+const infoTwo = document.querySelector('.info-two');
+infoTwo.style.display = 'none';
+const scoreValueTwo = document.getElementById('score-value-two');
 const healthValueTwo = document.getElementById('health-value-two');
 
-const finalScore = document.getElementById('finalScore');
+const winner = document.getElementById('winner');
 
 //Instructions Section
 const instructionSection = document.querySelector('.instruction-section');
@@ -51,10 +56,10 @@ homeButton.style.display = 'none';
   resetScore();
   homeButton.style.display = 'none';
   muteButton.style.display = 'none'
-  weaponType.style.display = 'none';
   openingAudioPlaying = false;
   opening.currentTime = 0;
   info.style.display = 'none';
+  infoTwo.style.display = 'none';
   GameOver.style.display = 'none';
   volumeIcon.classList.remove('fa', 'fa-volume-up');
   volumeIcon.classList.add('fa', 'fa-volume-mute');
@@ -74,6 +79,7 @@ window.onload = () => {
     canvas.style.display = '';
     openingSection.style.display = 'none';
     info.style.display = '';
+    infoTwo.style.display = '';
     homeButton.style.display = '';
     muteButton.style.display = '';
     pauseOpeningAudio();
@@ -93,8 +99,8 @@ const restartButton = document.getElementById('restart-button');
   GameOver.style.display = 'none';
   canvas.style.display = '';
   info.style.display = '';
+  infoTwo.style.display = '';
   muteButton.style.display = '';
-  weaponType.style.display = '';
   startGame();
 }
 

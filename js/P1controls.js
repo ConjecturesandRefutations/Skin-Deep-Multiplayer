@@ -246,6 +246,15 @@ class Player {
       document.removeEventListener('keydown', this.handleKeyDown);
       document.removeEventListener('keyup', this.handleKeyUp);
     }
+
+    collidesWith(x, y, width, height) {
+      return (
+        this.x < x + width &&
+        this.x + this.width > x &&
+        this.y < y + height &&
+        this.y + this.height > y
+      );
+    }
   }
   
   document.addEventListener('keydown', (event) => {

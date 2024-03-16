@@ -10,6 +10,7 @@ const medical = new Audio('./audio/medikit.wav');
 const magic = new Audio('./audio/pill.wav');
 const shotgun = new Audio('./audio/shotgun.wav');
 const reload = new Audio('./audio/reload.mp3');
+const shot = new Audio('./audio/shot.wav');
 
 const openingAudio = document.querySelector('.play-music');
 const volumeIcon = document.getElementById('volume-icon');

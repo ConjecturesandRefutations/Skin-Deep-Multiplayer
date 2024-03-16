@@ -119,6 +119,16 @@ canvas{
   font-weight: bold;
 }
 
+.info-two{
+  position: absolute;
+  bottom: 20px;
+  right: 100px;
+  z-index: 5;
+  font-size: 20px;
+  font-family: 'Courier New', sans-serif;
+  font-weight: bold;
+}
+
 #title,#died{
   background-color: black;
   white-space: nowrap;

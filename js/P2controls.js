@@ -5,7 +5,7 @@ class PlayerTwo {
       this.width = 50;
       this.height = 50;
       this.angle = 0;
-      this.img = './images/player-pistol.png';
+      this.img = './images/Player2.png';
       this.upButtonDown = false;
       this.downButtonDown = false;
       this.leftButtonDown = false;
@@ -33,9 +33,9 @@ class PlayerTwo {
       } else if (this.isWounded && this.hasPistol) {
         playertwoImg.src = './images/player-wounded.png'; // Wounded without shotgun
       } else if (!this.isWounded && this.hasShotgun) {
-        playertwoImg.src = './images/player-shotgun.png'; // Not wounded with shotgun
+        playertwoImg.src = './images/player2-shotgun.png'; // Not wounded with shotgun
       } else {
-        playertwoImg.src = './images/player-pistol.png'; // Not wounded without shotgun (default)
+        playertwoImg.src = './images/player2.png'; // Not wounded without shotgun (default)
       }
   
       // Calculate the angle of rotation based on the player's current direction
@@ -84,9 +84,7 @@ class PlayerTwo {
       } else if (event.key === 'd' && !this.rightButtonDown) {
         this.rightButtonDown = true;
         this.throttledRightStart();
-      } else if (event.key === 'x') {
-        this.shootBullet();
-      }
+      } 
     }
   
     handleKeyUp(event) {
@@ -105,7 +103,7 @@ class PlayerTwo {
       }
      else if (event.key === 'x') {
       // x key
-      this.bulletFired = false;
+      this.bulletTwoFired = false;
     }
     }
   
@@ -158,7 +156,7 @@ class PlayerTwo {
     }
   
     shootBullet() {
-      if (!this.bulletFired) {
+      if (!this.bulletTwoFired) {
         let offsetX = 0;
         let offsetY = 0;
   
@@ -186,9 +184,9 @@ class PlayerTwo {
           offsetY = 9;
         }
   
-        const bullet = new Bullet(this.x + offsetX, this.y + offsetY, this.angle);
-        currentGame.bullets.push(bullet);
-        this.bulletFired = true;
+        const bulletTwo = new BulletTwo(this.x + offsetX, this.y + offsetY, this.angle);
+        currentGame.bulletsTwo.push(bulletTwo);
+        this.bulletTwoFired = true;
         gunshot.currentTime = 0;
         if (!audioMuted) {
           gunshot.play();
@@ -198,24 +196,25 @@ class PlayerTwo {
     }
   
     shootShotgun() {
-      if (!this.bulletFired) {
-        const bulletOffsets = [
+      if (!this.bulletTwoFired) {
+        this.bulletTwoFired = true;
+        const bulletTwoOffsets = [
           { offsetX: 0, offsetY: 0, angle: 0 }, // Middle bullet
           { offsetX: 20, offsetY: -20, angle: -Math.PI / 16 }, // Left bullet
           { offsetX: -20, offsetY: -20, angle: Math.PI / 16 }, // Right bullet
         ];
   
-        bulletOffsets.forEach((offset) => {
+        bulletTwoOffsets.forEach((offset) => {
           const adjustedOffsetX = offset.offsetX;
           const adjustedOffsetY = offset.offsetY;
           const adjustedAngle = this.angle + offset.angle;
   
-          const bullet = new Bullet(this.x + adjustedOffsetX, this.y + adjustedOffsetY, adjustedAngle);
+          const bulletTwo = new BulletTwo(this.x + adjustedOffsetX, this.y + adjustedOffsetY, adjustedAngle);
   
-          currentGame.bullets.push(bullet);
+          currentGame.bulletsTwo.push(bulletTwo);
         });
   
-        this.bulletFired = true;
+        this.bulletTwoFired = true;
         shotgun.currentTime = 0;
         if (!audioMuted) {
           shotgun.play();
@@ -231,6 +230,14 @@ class PlayerTwo {
     removeEventListeners() {
       document.removeEventListener('keydown', this.handleKeyDown);
       document.removeEventListener('keyup', this.handleKeyUp);
+    }
+    collidesWith(x, y, width, height) {
+      return (
+        this.x < x + width &&
+        this.x + this.width > x &&
+        this.y < y + height &&
+        this.y + this.height > y
+      );
     }
   }
   

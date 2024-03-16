@@ -1,4 +1,4 @@
-class Bullet {
+class BulletTwo {
     constructor(x, y, angle) {
       this.x = x;
       this.y = y;
@@ -41,7 +41,7 @@ class Bullet {
     draw() {
       if (this.isPistolBullet) {
         // Render pistol bullet with image or fillRect as backup
-        if (this.isImageLoaded && currentPlayer.hasPistol) {
+        if (this.isImageLoaded && currentPlayerTwo.hasPistol) {
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate(this.angle + Math.PI / 2);
@@ -71,6 +71,4 @@ class Bullet {
       }
     }
   }
-  
-
   

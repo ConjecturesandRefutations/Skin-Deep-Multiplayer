@@ -81,18 +81,21 @@
 
 
     <section class="info">
-
+        <p>Player One</p>
         <p class="one">Health: <span id="health-value">100</span><span id="health-indicator" class="health-indicator hidden" style="color: green;"> +20</span><span id="ten-indicator" class="ten-indicator hidden" style="color: green;"> +10</span></div><br/></p>
-        <p class="two">Kill Count: <span id="score-value">0</span> </p>
+        <p class="two">Kill Count: <span id="score-value">0</span></p>
 
-        <p class="three">Health: <span id="health-value-two">100</span><span id="health-indicator" class="health-indicator-two hidden" style="color: green;"> +20</span><span id="ten-indicator" class="ten-indicator hidden" style="color: green;"> +10</span></div><br/></p>
+    </section>
+
+    <section class="info-two">
+        <p>Player Two</p>
+        <p class="three">Health: <span id="health-value-two">100</span><span id="health-indicator-two" class="health-indicator-two hidden" style="color: green;"> +20</span><span id="ten-indicator-two" class="ten-indicator-two hidden" style="color: green;"> +10</span></div><br/></p>
         <p class="four">Kill Count: <span id="score-value-two">0</span> </p>
-
     </section>
 
     <section class="game-over">
         <h1 id="died">You died</h1>
-        <h3 id="final-score">Score <span id="finalScore"></span></h3>
+        <h3 id="final-score"> <span id="winner"></span> Wins</h3>
         <h3 id="restart-button">Restart?</h3>
     </section>
  
@@ -103,6 +106,7 @@
     <script src="js/P2controls.js"></script>
     <script src="js/canvas.js"></script>
     <script src="js/bullet.js"></script>
+    <script src="js/bulletTwo.js"></script>
     <script src="js/enemy.js"></script>
     <script src="js/sections.js"></script>
     <script src="js/medikit.js"></script>

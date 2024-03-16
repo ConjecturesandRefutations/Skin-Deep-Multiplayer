@@ -28,6 +28,7 @@ function startGame(){
   currentGame = new Game();
 /*   ctx.drawImage(background, 0, 0,canvas.width,canvas.height); // draw background image
  */  currentGame.bullets = [];
+     currentGame.bulletsTwo = [];
 
    //Instantiate a new player
    currentPlayer = new Player(50,50);
@@ -69,13 +70,27 @@ function updateCanvas() {
   currentPlayerTwo.drawPlayer();
   enemyFrequency++;
 
-   // Update and draw bullets
+   // Update and draw Player 1 bullets
 for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
   const bullet = currentGame.bullets[i];
 
   if (bullet.isAlive) {
     bullet.update();
     bullet.draw();
+
+
+        // Check for collisions with currentPlayerTwo
+        if (currentPlayerTwo.collidesWith(bullet.x, bullet.y, bullet.width, bullet.height)) {
+          shot.play();
+          // Decrease healthTwo by 10
+          currentGame.healthTwo -= 10;
+          healthValueTwo.innerText = currentGame.healthTwo;  
+        
+          // Remove the bullet from the array
+          currentGame.bullets.splice(i, 1);
+          
+          continue;
+        }
 
     // Check for collisions with enemies
     for (let j = currentGame.enemies.length - 1; j >= 0; j--) {
@@ -99,6 +114,50 @@ for (let i = currentGame.bullets.length - 1; i >= 0; i--) {
     currentGame.bullets.splice(i, 1);
   }
 }
+
+// Update and draw Player 2 bullets
+for (let i = currentGame.bulletsTwo.length - 1; i >= 0; i--) {
+  const bulletTwo = currentGame.bulletsTwo[i];
+
+  if (bulletTwo.isAlive) {
+    bulletTwo.update();
+    bulletTwo.draw();
+
+           // Check for collisions with currentPlayerTwo
+           if (currentPlayer.collidesWith(bulletTwo.x, bulletTwo.y, bulletTwo.width, bulletTwo.height)) {
+            shot.play();
+            // Decrease healthTwo by 10
+            currentGame.health -= 10;
+            healthValue.innerText = currentGame.health;  
+          
+            // Remove the bullet from the array
+            currentGame.bulletsTwo.splice(i, 1);
+            
+            continue;
+          }
+
+    // Check for collisions with enemies
+    for (let j = currentGame.enemies.length - 1; j >= 0; j--) {
+      const enemy = currentGame.enemies[j];
+
+      if (enemy.collidesWith(bulletTwo.x, bulletTwo.y)) {
+        if (!enemy.wasHit) { // Check if the enemy was not hit before
+          if(!audioMuted){grunt.play()};
+          enemy.destroy();
+          currentGame.scoreTwo++;
+          scoreValueTwo.innerText = currentGame.scoreTwo;
+          enemy.wasHit = true; // Mark the enemy as hit
+        }
+
+        // Remove the bullet from the array
+        currentGame.bulletsTwo.splice(i, 1);
+      }
+    }
+  } else {
+    // Remove dead bullets from the array
+    currentGame.bulletsTwo.splice(i, 1);
+  }
+} 
 
 if (enemyFrequency % divisor === 1) {
     // Determine which side to spawn the enemy
@@ -140,7 +199,6 @@ if (enemyFrequency % divisor === 1) {
   
     currentGame.enemies.push(newEnemy);
   }
- 
 
   for (let i = 0; i < currentGame.enemies.length; i++) {
     const enemy = currentGame.enemies[i];
@@ -258,7 +316,7 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
 for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
     const medikit = currentGame.medikits[i];
   
-    if (medikit.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayeTwor.width, currentPlayerTwo.height)) {
+    if (medikit.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
       // Player collided with medikit
       if (!audioMuted) {
         medical.play();
@@ -267,18 +325,18 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
         currentGame.healthTwo += 20;
         healthValueTwo.innerText = currentGame.health;
         // Display the bonus indicator and then hide it after a delay
-        const healthIndicator = document.getElementById('health-indicator');
-        healthIndicator.classList.remove('hidden');
+        const healthIndicatorTwo = document.getElementById('health-indicator-two');
+        healthIndicatorTwo.classList.remove('hidden');
         setTimeout(() => {
-              healthIndicator.classList.add('hidden');
+              healthIndicatorTwo.classList.add('hidden');
           }, 1000); 
-      } else if (currentGame.health === 90) {
-        currentGame.health += 10;
-        healthValue.innerText = currentGame.health;
-        const tenIndicator = document.getElementById('ten-indicator');
-        tenIndicator.classList.remove('hidden');
+      } else if (currentGame.healthTwo === 90) {
+        currentGame.healthTwo += 10;
+        healthValueTwo.innerText = currentGame.healthTwo;
+        const tenIndicatorTwo = document.getElementById('ten-indicator-two');
+        tenIndicatorTwo.classList.remove('hidden');
         setTimeout(() => {
-              tenIndicator.classList.add('hidden');
+              tenIndicatorTwo.classList.add('hidden');
           }, 1000); 
       }
       // Remove the medikit from the array
@@ -293,7 +351,7 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
   }
 
 // Check if the player's score is a multiple of 50 and spawn a pill
-if (currentGame.score % 50 === 0 && currentGame.score !== 0 && !pillSpawned) {
+if ((currentGame.score % 50 === 0 && currentGame.score !== 0 && !pillSpawned) || (currentGame.scoreTwo % 50 === 0 && currentGame.scoreTwo !== 0 && !pillSpawned)) {
   // Spawn a new pill only if the player's score is a multiple of 50
   const pillWidth = 30; 
   const pillHeight = 10;
@@ -315,7 +373,7 @@ if (currentGame.score % 50 === 0 && currentGame.score !== 0 && !pillSpawned) {
   pillSpawned = true;
 }
 
-// Check for collisions with pills
+// Check for player 1 collisions with pills
 for (let i = currentGame.pills.length - 1; i >= 0; i--) {
   const pill = currentGame.pills[i];
 
@@ -332,11 +390,30 @@ for (let i = currentGame.pills.length - 1; i >= 0; i--) {
   }
 }
 
+
+// Check for player 2 collisions with pills
+for (let i = currentGame.pills.length - 1; i >= 0; i--) {
+    const pill = currentGame.pills[i];
+  
+    if (pill.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
+      currentGame.pills.splice(i, 1);
+      enemySpeed-=0.75;
+      divisor+=15;
+      if(!audioMuted){
+      magic.play();
+      }
+    } else {
+      // Draw and update the pill
+      pill.drawPill();
+    }
+  }
+
 // Reset the flag when the player's score is not a multiple of 50
 if (currentGame.score % 50 !== 0) {
   pillSpawned = false;
 }
 
+//Logic for spawning player 1 shotgun
 if (currentGame.score === 100 && !shotgunSpawned) {
   // Spawn a new shotgun only if the player's score is a multiple of 100
   const shotgunWidth = 100; 
@@ -367,7 +444,6 @@ for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
     }
     currentPlayer.hasPistol = false;
     currentPlayer.hasShotgun = true;
-    weaponImg.src = gunType();
   } else {
     // Draw and update the shotgun
     shotgun.drawShotgun();
@@ -378,12 +454,64 @@ if (currentGame.score !== 100) {
   shotgunSpawned = false;
 }
 
-//Logic for ending the game
-if(currentGame.health===0){
-  endGame();
-  finalScore.innerText = currentGame.score;
-  gameOver = true;
+
+
+
+
+//Logic for spawning player 2 shotgun
+if (currentGame.scoreTwo === 100 && !shotgunSpawned) {
+  // Spawn a new shotgun only if the player's score is a multiple of 100
+  const shotgunWidth = 100; 
+  const shotgunHeight = 50;
+  const randomShotgunPosition = getRandomPosition(shotgunWidth, shotgunHeight);
+
+  const newShotgun = new Shotgun(
+    randomShotgunPosition.x,
+    randomShotgunPosition.y,
+    shotgunWidth,
+    shotgunHeight
+  );
+
+  currentGame.shotguns.push(newShotgun);
+
+  // Set the flag to true to indicate that a shotgun has been spawned
+  shotgunSpawned = true;
 }
+
+// Check for collisions with shotguns
+for (let i = currentGame.shotguns.length - 1; i >= 0; i--) {
+  const shotgun = currentGame.shotguns[i];
+
+  if (shotgun.collidesWith(currentPlayerTwo.x, currentPlayerTwo.y, currentPlayerTwo.width, currentPlayerTwo.height)) {
+    currentGame.shotguns.splice(i, 1);
+    if(!audioMuted){
+      reload.play();
+    }
+    currentPlayerTwo.hasPistol = false;
+    currentPlayerTwo.hasShotgun = true;
+  } else {
+    // Draw and update the shotgun
+    shotgun.drawShotgun();
+  }
+}
+
+if (currentGame.score !== 100) {
+  shotgunSpawned = false;
+}
+
+
+
+//Logic for ending the game
+if((currentGame.health===0) || (currentGame.healthTwo===0)){
+  endGame();
+  gameOver = true;
+  if (currentGame.health===0){
+  winner.innerText = 'Player Two';
+  } else {
+    winner.innerText = 'Player One';
+  }
+}
+console.log(currentGame.health)
   animationID = requestAnimationFrame(updateCanvas);
 }
 
@@ -402,13 +530,13 @@ function resetScore(){
   scoreValue.innerText = currentGame.score;
   healthValue.innerText = currentGame.health;
   healthValueTwo.innerText = currentGame.health;
-  healthV
   enemySpeed = 1.5;
   divisor = 60;  
 }
 
 function endGame(){
   info.style.display = 'none';
+  infoTwo.style.display = 'none';
   canvas.style.display = 'none';
   GameOver.style.display = '';
   muteButton.style.display = 'none';

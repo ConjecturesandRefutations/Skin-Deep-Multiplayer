@@ -63,7 +63,7 @@ class Enemy {
     
             if (!this.wasAttacking && ((attackPlayer1 && distanceToPlayer1 <= 65) || (attackPlayer2 && distanceToPlayer2 <= 65))) {
               if (attackPlayer1 && currentGame.health > 0) {
-                currentGame.health -= 5;   
+                currentGame.health -= 10;   
                 healthValue.innerText = currentGame.health;
                 currentPlayer.isWounded = true;
                 setTimeout(() => {
@@ -71,7 +71,7 @@ class Enemy {
                 }, 500);
               }
               if (attackPlayer2 && currentGame.healthTwo > 0) {
-                 currentGame.healthTwo -= 5; 
+                 currentGame.healthTwo -= 10; 
                  healthValueTwo.innerText = currentGame.healthTwo;
                 currentPlayerTwo.isWounded = true;
                 setTimeout(() => {
@@ -98,7 +98,7 @@ class Enemy {
         }
     
         // Draw the enemy
-        const drawAngle = angle + Math.PI / 2; // Adjust the angle for proper rotation
+        const drawAngle = Math.atan2(currentPlayer.y - this.y, currentPlayer.x - this.x); // Adjust the angle for proper rotation
         ctx.save();
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
         ctx.rotate(drawAngle);

@@ -15,7 +15,7 @@ let countdown = 20;
 let medikitSpawnTimer = 0;
 let overallMedikitTimer = 0; // Variable for tracking overall time for medikit spawning
 let pillSpawned = false; 
-const medikitSpawnInterval = 20 * divisor;
+const medikitSpawnInterval = 13 * divisor;
 
 let accelerator = 20;
 

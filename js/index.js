@@ -298,19 +298,40 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
       healthValue.innerText = currentGame.health;
       // Display the bonus indicator and then hide it after a delay
       const healthIndicator = document.getElementById('health-indicator');
+      healthIndicator.innerText = '+20';
       healthIndicator.classList.remove('hidden');
       setTimeout(() => {
-            healthIndicator.classList.add('hidden');
-        }, 1000); 
-    } else if (currentGame.health === 90) {
+          healthIndicator.classList.add('hidden');
+      }, 1000); 
+  } else if (currentGame.health === 90) {
       currentGame.health += 10;
       healthValue.innerText = currentGame.health;
-      const tenIndicator = document.getElementById('ten-indicator');
-      tenIndicator.classList.remove('hidden');
+      const healthIndicator = document.getElementById('health-indicator');
+      healthIndicator.innerText = '+10';
+      healthIndicator.classList.remove('hidden');
       setTimeout(() => {
-            tenIndicator.classList.add('hidden');
-        }, 1000); 
-    } else 
+          healthIndicator.classList.add('hidden');
+      }, 1000); 
+  } else if (currentGame.health === 95) {
+      currentGame.health += 5;
+      healthValue.innerText = currentGame.health;
+      const healthIndicator = document.getElementById('health-indicator');
+      healthIndicator.innerText = '+5';
+      healthIndicator.classList.remove('hidden');
+      setTimeout(() => {
+          healthIndicator.classList.add('hidden');
+      }, 1000); 
+  } else if (currentGame.health === 85) {
+      currentGame.health += 15; // Health is increased by 15 instead of 85
+      healthValue.innerText = currentGame.health;
+      const healthIndicator = document.getElementById('health-indicator');
+      healthIndicator.innerText = '+15'; // Change indicator text to +15
+      healthIndicator.classList.remove('hidden');
+      setTimeout(() => {
+          healthIndicator.classList.add('hidden');
+      }, 1000); 
+  }
+   else 
     // Remove the medikit from the array
     currentGame.medikits.splice(i, 1);
 
@@ -337,19 +358,39 @@ for (let i = currentGame.medikits.length - 1; i >= 0; i--) {
         healthValueTwo.innerText = currentGame.healthTwo;
         // Display the bonus indicator and then hide it after a delay
         const healthIndicatorTwo = document.getElementById('health-indicator-two');
+        healthIndicatorTwo.innerText = '+20';
         healthIndicatorTwo.classList.remove('hidden');
         setTimeout(() => {
-              healthIndicatorTwo.classList.add('hidden');
-          }, 1000); 
-      } else if (currentGame.healthTwo === 90) {
+            healthIndicatorTwo.classList.add('hidden');
+        }, 1000); 
+    } else if (currentGame.healthTwo === 90) {
         currentGame.healthTwo += 10;
         healthValueTwo.innerText = currentGame.healthTwo;
-        const tenIndicatorTwo = document.getElementById('ten-indicator-two');
-        tenIndicatorTwo.classList.remove('hidden');
+        const healthIndicatorTwo = document.getElementById('health-indicator-two');
+        healthIndicatorTwo.innerText = '+10';
+        healthIndicatorTwo.classList.remove('hidden');
         setTimeout(() => {
-              tenIndicatorTwo.classList.add('hidden');
-          }, 1000); 
-      }
+            healthIndicatorTwo.classList.add('hidden');
+        }, 1000); 
+    } else if (currentGame.healthTwo === 95) {
+        currentGame.healthTwo += 5;
+        healthValueTwo.innerText = currentGame.healthTwo;
+        const healthIndicatorTwo = document.getElementById('health-indicator-two');
+        healthIndicatorTwo.innerText = '+5';
+        healthIndicatorTwo.classList.remove('hidden');
+        setTimeout(() => {
+            healthIndicatorTwo.classList.add('hidden');
+        }, 1000); 
+    } else if (currentGame.healthTwo === 85) {
+        currentGame.healthTwo += 15; // Health is increased by 15 instead of 85
+        healthValueTwo.innerText = currentGame.healthTwo;
+        const healthIndicatorTwo = document.getElementById('health-indicator-two');
+        healthIndicatorTwo.innerText = '+15'; // Change indicator text to +15
+        healthIndicatorTwo.classList.remove('hidden');
+        setTimeout(() => {
+            healthIndicatorTwo.classList.add('hidden');
+        }, 1000); 
+    }    
       // Remove the medikit from the array
       currentGame.medikits.splice(i, 1);
   

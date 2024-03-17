@@ -63,7 +63,7 @@ class Enemy {
     
             if (!this.wasAttacking && ((attackPlayer1 && distanceToPlayer1 <= 65) || (attackPlayer2 && distanceToPlayer2 <= 65))) {
               if (attackPlayer1 && currentGame.health > 0) {
-                currentGame.health -= 10;   
+                currentGame.health -= 5;   
                 healthValue.innerText = currentGame.health;
                 currentPlayer.isWounded = true;
                 setTimeout(() => {
@@ -71,7 +71,7 @@ class Enemy {
                 }, 500);
               }
               if (attackPlayer2 && currentGame.healthTwo > 0) {
-                 currentGame.healthTwo -= 10; 
+                 currentGame.healthTwo -= 5; 
                  healthValueTwo.innerText = currentGame.healthTwo;
                 currentPlayerTwo.isWounded = true;
                 setTimeout(() => {

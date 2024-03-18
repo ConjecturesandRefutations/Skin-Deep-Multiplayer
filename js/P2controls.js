@@ -245,7 +245,7 @@ class PlayerTwo {
   }
   
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'x' && !gameOver) {
+    if (event.key === 'q' && !gameOver) {
       if (currentPlayerTwo.hasPistol) {
         currentPlayerTwo.shootBullet();
       } else if (currentPlayerTwo.hasShotgun) {

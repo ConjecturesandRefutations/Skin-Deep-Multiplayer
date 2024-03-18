@@ -104,8 +104,8 @@ class PlayerTwo {
         this.rightButtonDown = false;
         this.stopMovingPlayerTwo();
       }
-     else if (event.key === 'x') {
-      // x key
+     else if (event.key === 'q') {
+      // q key
       this.bulletTwoFired = false;
     }
     }
